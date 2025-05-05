@@ -74,6 +74,7 @@
         background-position: center;
         margin: 40px auto 20px;
         border: none;
+        text-indent: -9999px;
       }
       
       .button-image {
@@ -88,6 +89,7 @@
         cursor: pointer;
         margin: 20px auto;
         display: block;
+        text-indent: -9999px;
       }
       
       .cast-box {
