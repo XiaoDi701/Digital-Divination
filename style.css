@@ -20,15 +20,17 @@
     }
 
     .title-image {
-        width: 400px;
-        height: 100px;
+        width: 1000px; /* 原来是 400px */
+        height: 250px; /* 原来是 100px */
         background-image: url("title.png");
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
-        margin: 40px auto 20px;
+        margin: 60px auto 0; /* 更靠上，不要挡按钮太多 */
         border: none;
-        text-indent: -9999px; /* 隐藏文字 */
+        text-indent: -9999px;
+        position: relative;
+        z-index: 10;
       }
       
       /* 按钮图片替代 */
@@ -45,6 +47,8 @@
         margin: 20px auto;
         display: block;
         text-indent: -9999px; /* 隐藏按钮文字 */
+        position: relative;
+        z-index: 5;
       }
       
       /* 动画显示区域 */
@@ -71,10 +75,13 @@
         background-image: url("cast.png");
         background-size: 100% 100%;
         background-repeat: no-repeat;
-        padding: 40px 30px;
-        max-width: 600px;
+        padding: 80px 60px; /* 原来是 40px 30px，扩大内容边距 */
+        max-width: 800px; /* 原来是 600px，让文字更不挤 */
         margin: 30px auto;
-        border-radius: 10px;
+        border-radius: 20px; /* 略显更圆润 */
         color: #222;
-        box-shadow: none;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* 加一点边框感 */
+        font-size: 1.1rem;
+        line-height: 1.6;
+        box-sizing: border-box;
       }
