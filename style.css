@@ -13,7 +13,7 @@
       font-weight: 700;
       font-style: normal;
       background-image: url("1.png");
-      background-size: contain;      /* 等比例缩放，不拉伸 */
+      background-size: 100% auto;
       background-repeat: no-repeat;
       background-position: center center;
       background-color: #f0f0f0;     /* 备用背景色 */
