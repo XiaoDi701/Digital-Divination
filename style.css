@@ -12,6 +12,11 @@
       font-family: "source-han-sans-cjk-hk", sans-serif;
       font-weight: 700;
       font-style: normal;
+      background-image: url("1.png");
+      background-size: contain;      /* 等比例缩放，不拉伸 */
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-color: #f0f0f0;     /* 备用背景色 */
     }
 
     h1, p, button {

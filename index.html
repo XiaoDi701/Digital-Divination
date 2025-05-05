@@ -141,21 +141,23 @@
 }
 
 
-    function startDivination() {
-      const resultBox = document.getElementById("result");
-      const upper = getTrigramBinary();
-      const lower = getTrigramBinary();
-      const full = upper + lower;
-      const guaName = guaMap[full] || "未知卦象";
+function startDivination() {
+  document.body.style.backgroundImage = 'url("2.png")'; // 👈 切换背景
 
-      playAnimation(upper); // 显示 GIF 动画
+  const resultBox = document.getElementById("result");
+  const upper = getTrigramBinary();
+  const lower = getTrigramBinary();
+  const full = upper + lower;
+  const guaName = guaMap[full] || "未知卦象";
 
-      resultBox.innerHTML = `
-        <p>Your Hexagram: <strong>${guaName}</strong></p>
-        <p>Consulting the Dao...</p>
-      `;
+  playAnimation(upper); // 显示 GIF 动画
 
-      const prompt = `
+  resultBox.innerHTML = `
+    <p>Your Hexagram: <strong>${guaName}</strong></p>
+    <p>Consulting the Dao...</p>
+  `;
+
+  const prompt = `
 Based on the following hexagram generated from digital coin tosses in an I Ching divination ritual, provide an accurate and traditional explanation from the Book of Changes:
 
 - Upper trigram (binary): ${upper}
@@ -171,13 +173,13 @@ Please respond in the following structure:
 Do not invent new hexagrams or interpret freely. Your answer must be grounded in traditional I Ching scholarship. Your answer should be in English. Do not use"*"for formatting in your response.
 `;
 
-      puter.ai.chat(prompt).then((reply) => {
-        resultBox.innerHTML += `
-          <hr>
-          <div style="text-align: left; white-space: pre-wrap;">${reply}</div>
-        `;
-      });
-    }
+  puter.ai.chat(prompt).then((reply) => {
+    resultBox.innerHTML += `
+      <hr>
+      <div style="text-align: left; white-space: pre-wrap;">${reply}</div>
+    `;
+  });
+}
   </script>
 </body>
 </html>
