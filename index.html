@@ -4,38 +4,6 @@
   <meta charset="UTF-8">
   <title>Cyber I Ching Reading</title>
   <script src="https://js.puter.com/v2/"></script>
-  <style>
-    body {
-      background: linear-gradient(to bottom, #f0f0f0, #e0e0e0);
-      font-family: "Noto Serif SC", serif;
-      color: #222;
-      text-align: center;
-      padding: 50px;
-    }
-    button {
-      font-size: 1.2em;
-      padding: 0.6em 1.5em;
-      background-color: #444;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    #animationBox {
-      height: 200px;
-      margin-bottom: 20px;
-    }
-    #result {
-      margin-top: 2em;
-      background: white;
-      border-radius: 10px;
-      padding: 20px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-  </style>
 </head>
 <body>
   <h1>I Ching Divination</h1>
@@ -113,20 +81,23 @@ const guaMap = {
 
 
     // 正确的动画帧路径：DumpStack.log.tmp0025 ~ tmp0059
-    const coinAnimations = {
-      "111": [],
-      "110": [],
-      "001": [],
-      "000": []
-    };
+    const baseFrames = [];
+for (let i = 25; i <= 59; i++) {
+  const filename = `DumpStack.log.tmp${i.toString().padStart(4, '0')}.png`;
+  baseFrames.push(filename);
+}
 
-    for (let i = 25; i <= 59; i++) {
-      const filename = `DumpStack.log.tmp${i.toString().padStart(4, '0')}.png`;
-      coinAnimations["111"].push(`animation/111/${filename}`);
-      coinAnimations["110"].push(`animation/110/${filename}`);
-      coinAnimations["001"].push(`animation/001/${filename}`);
-      coinAnimations["000"].push(`animation/000/${filename}`);
-    }
+// 我们只有 "000", "001", "110", "111" 文件夹，其他复用已有的动画文件夹
+const coinAnimations = {
+  "000": baseFrames.map(f => `animation/000/${f}`),
+  "001": baseFrames.map(f => `animation/001/${f}`),
+  "010": baseFrames.map(f => `animation/001/${f}`), // fallback to 001
+  "011": baseFrames.map(f => `animation/000/${f}`), // fallback to 000
+  "100": baseFrames.map(f => `animation/111/${f}`), // fallback to 111
+  "101": baseFrames.map(f => `animation/110/${f}`), // fallback to 110
+  "110": baseFrames.map(f => `animation/110/${f}`),
+  "111": baseFrames.map(f => `animation/111/${f}`)
+};
 
     function flipCoin() {
       return Math.random() < 0.5 ? 0 : 1;
