@@ -9,6 +9,9 @@
       height: 100vh;
       display: flex;
       flex-direction: column;
+      font-family: "source-han-sans-cjk-hk", sans-serif;
+      font-weight: 700;
+      font-style: normal;
     }
 
     h1, p, button {
