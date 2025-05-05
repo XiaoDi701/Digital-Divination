@@ -101,16 +101,16 @@
       }
       return binary;
     }
-
     function playAnimation(key, containerId = "animationBox") {
-      const container = document.getElementById(containerId);
-      container.innerHTML = "";
+  const container = document.getElementById(containerId);
+  container.innerHTML = "";
 
-      const img = document.createElement("img");
-      img.src = coinAnimations[key];
-      img.alt = `Trigram ${key}`;
-      container.appendChild(img);
-    }
+  const img = document.createElement("img");
+  img.src = coinAnimations[key] + `?v=${Date.now()}`; // 强制刷新播放
+  img.alt = `Trigram ${key}`;
+  container.appendChild(img);
+}
+
 
     function startDivination() {
       const resultBox = document.getElementById("result");
