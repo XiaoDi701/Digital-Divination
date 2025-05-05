@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>周一卦象</title>
+  <title>Cyber I Ching Reading</title>
   <script src="https://js.puter.com/v2/"></script>
   <style>
     body {
@@ -26,7 +26,7 @@
       background: white;
       border-radius: 10px;
       padding: 20px;
-      max-width: 500px;
+      max-width: 600px;
       margin-left: auto;
       margin-right: auto;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -34,22 +34,79 @@
   </style>
 </head>
 <body>
-  <h1>赛博·周一卦象检测</h1>
-  <p>点击下方按钮，掷出两组三爻，生成本日卦象</p>
-  <button onclick="startDivination()">掷卦</button>
+  <h1>Cyber Monday · I Ching Divination</h1>
+  <p>Click the button below to cast two sets of trigrams and receive your hexagram.</p>
+  <button onclick="startDivination()">Cast Hexagram</button>
 
   <div id="result"></div>
 
   <script>
-    const guaMap = {
-      "111111": "乾为天", "000000": "坤为地", "010001": "水雷屯", "100010": "山水蒙",
-      "010111": "水天需", "111010": "天水讼", "000010": "地水师", "010000": "水地比",
-      "110111": "风天小畜", "111011": "天泽履", "000111": "地天泰", "111000": "天地否",
-      // 你可以继续补全完整的64卦映射...
-    };
+const guaMap = {
+  "111111": "乾为天",
+  "000000": "坤为地",
+  "010001": "水雷屯",
+  "100010": "山水蒙",
+  "010111": "水天需",
+  "111010": "天水讼",
+  "000010": "地水师",
+  "010000": "水地比",
+  "110111": "风天小畜",
+  "111011": "天泽履",
+  "000111": "地天泰",
+  "111000": "天地否",
+  "111001": "天火同人",
+  "100111": "火天大有",
+  "111100": "天雷无妄",
+  "001111": "雷天大壮",
+  "000100": "地泽临",
+  "001000": "山地剥",
+  "011001": "风水涣",
+  "100110": "山泽损",
+  "000011": "地火明夷",
+  "110000": "雷地豫",
+  "101111": "泽天夬",
+  "111101": "天风姤",
+  "000001": "泽地萃",
+  "100000": "山天大畜",
+  "100001": "山雷颐",
+  "011110": "风泽中孚",
+  "010100": "水火既济",
+  "001010": "火水未济",
+  "100101": "山泽损",
+  "101001": "泽山咸",
+  "001101": "雷风恒",
+  "101100": "火雷噬嗑",
+  "001110": "雷火丰",
+  "011100": "火风鼎",
+  "000110": "泽雷随",
+  "011000": "山风蛊",
+  "110001": "雷山小过",
+  "100011": "山泽履",
+  "111110": "天地否",
+  "011111": "风火家人",
+  "000101": "火泽睽",
+  "101000": "泽火革",
+  "100100": "火山旅",
+  "001001": "山火贲",
+  "011011": "泽水困",
+  "110110": "雷水解",
+  "001011": "山水蒙",
+  "110100": "风水涣",
+  "101101": "火水未济",
+  "101011": "水火既济",
+  "010110": "雷泽归妹",
+  "011010": "泽雷随",
+  "110010": "风山渐",
+  "010011": "山风蛊",
+  "110011": "风火家人",
+  "001100": "雷泽归妹",
+  "011101": "泽山咸",
+  "101110": "火雷噬嗑"
+};
+
 
     function flipCoin() {
-      return Math.random() < 0.5 ? 0 : 1; // 反为0，正为1
+      return Math.random() < 0.5 ? 0 : 1;
     }
 
     function getTrigramBinary() {
@@ -62,36 +119,40 @@
 
     function startDivination() {
       const resultBox = document.getElementById('result');
-      const upper = getTrigramBinary(); // 上卦
-      const lower = getTrigramBinary(); // 下卦
-      const full = upper + lower; // 六位二进制卦象
+      const upper = getTrigramBinary(); // upper trigram
+      const lower = getTrigramBinary(); // lower trigram
+      const full = upper + lower;
 
       const guaName = guaMap[full] || "未知卦象";
+
       resultBox.innerHTML = `
-        <p>你的上卦为：<strong>${upper}</strong></p>
-        <p>你的下卦为：<strong>${lower}</strong></p>
-        <p>生成卦象：<strong>${guaName}</strong>（编号：${full}）</p>
-        <p>正在连接天机……</p>
+        <p>Your upper trigram: <strong>${upper}</strong></p>
+        <p>Your lower trigram: <strong>${lower}</strong></p>
+        <p>Generated Hexagram: <strong>${guaName}</strong> (Binary: ${full})</p>
+        <p>Consulting the Dao...</p>
       `;
 
       const prompt = `
-请你根据以下信息，提供真实的《易经》六十四卦中的一个卦的传统解读：
+Based on the following hexagram generated from digital coin tosses in an I Ching divination ritual, provide an accurate and traditional explanation from the Book of Changes:
 
-- 上卦（二进制）：${upper}
-- 下卦（二进制）：${lower}
-- 六爻组合（上三爻 + 下三爻）：${full}
-- 卦名（请只使用《易经》六十四卦中对应的中文卦名）：${guaName}
+- Upper trigram (binary): ${upper}
+- Lower trigram (binary): ${lower}
+- Combined hexagram (binary): ${full}
+- Name of hexagram: ${guaName}
 
-你需要输出的内容为：
-1. 卦名（只保留标准卦名，如“泽水困”）
-2. 卦义（根据传统易经解释，简洁但真实）
-3. 解读（根据卦义，给予普通现代人一天的忠告，风格可以现代但不要虚构内容）
+Please respond in the following structure:
+1. 卦名 (standard Chinese hexagram name, e.g., 泽水困)
+2. 卦义 (Traditional Chinese interpretation of this hexagram, accurate and concise)
+3. Modern Advice (a short, practical takeaway or mindset reflection for today, based on this hexagram's meaning)
 
-请不要胡编卦名或虚构解释，所有信息基于真实六十四卦。
+Do not invent new hexagrams or interpret freely. Your answer must be grounded in traditional I Ching scholarship.
 `;
 
       puter.ai.chat(prompt).then((reply) => {
-        resultBox.innerHTML += `<pre style="text-align: left; white-space: pre-wrap; margin-top: 20px;">${reply}</pre>`;
+        resultBox.innerHTML += `
+          <hr>
+          <div style="text-align: left; white-space: pre-wrap;">${reply}</div>
+        `;
       });
     }
   </script>
