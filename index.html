@@ -21,6 +21,10 @@
       border-radius: 8px;
       cursor: pointer;
     }
+    #animationBox {
+      height: 200px;
+      margin-bottom: 20px;
+    }
     #result {
       margin-top: 2em;
       background: white;
@@ -34,10 +38,11 @@
   </style>
 </head>
 <body>
-  <h1> I Ching Divination</h1>
+  <h1>I Ching Divination</h1>
   <p>Click the button below to cast two sets of trigrams and receive your hexagram.</p>
   <button onclick="startDivination()">Cast Hexagram</button>
 
+  <div id="animationBox"></div>
   <div id="result"></div>
 
   <script>
@@ -105,6 +110,24 @@ const guaMap = {
 };
 
 
+
+
+    // 正确的动画帧路径：DumpStack.log.tmp0025 ~ tmp0059
+    const coinAnimations = {
+      "111": [],
+      "110": [],
+      "001": [],
+      "000": []
+    };
+
+    for (let i = 25; i <= 59; i++) {
+      const filename = `DumpStack.log.tmp${i.toString().padStart(4, '0')}.png`;
+      coinAnimations["111"].push(`animation/111/${filename}`);
+      coinAnimations["110"].push(`animation/110/${filename}`);
+      coinAnimations["001"].push(`animation/001/${filename}`);
+      coinAnimations["000"].push(`animation/000/${filename}`);
+    }
+
     function flipCoin() {
       return Math.random() < 0.5 ? 0 : 1;
     }
@@ -117,13 +140,35 @@ const guaMap = {
       return binary;
     }
 
+    function playAnimation(key, containerId = "animationBox", frameDelay = 100) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = "";
+      const frames = coinAnimations[key];
+      if (!frames) return;
+
+      let index = 0;
+      const img = document.createElement("img");
+      img.style.maxHeight = "180px";
+      container.appendChild(img);
+
+      const interval = setInterval(() => {
+        if (index >= frames.length) {
+          clearInterval(interval);
+        } else {
+          img.src = frames[index];
+          index++;
+        }
+      }, frameDelay);
+    }
+
     function startDivination() {
       const resultBox = document.getElementById('result');
-      const upper = getTrigramBinary(); // upper trigram
-      const lower = getTrigramBinary(); // lower trigram
+      const upper = getTrigramBinary();
+      const lower = getTrigramBinary();
       const full = upper + lower;
-
       const guaName = guaMap[full] || "未知卦象";
+
+      playAnimation(upper); // 上卦决定动画
 
       resultBox.innerHTML = `
         <p>Your upper trigram: <strong>${upper}</strong></p>
@@ -145,7 +190,7 @@ Please respond in the following structure:
 2. 卦义 (Traditional Chinese interpretation of this hexagram, accurate and concise)
 3. Modern Advice (a short, practical takeaway or mindset reflection for today, based on this hexagram's meaning)
 
-Do not invent new hexagrams or interpret freely. Your answer must be grounded in traditional I Ching scholarship.Your Answer should be in English.
+Do not invent new hexagrams or interpret freely. Your answer must be grounded in traditional I Ching scholarship. Your answer should be in English.
 `;
 
       puter.ai.chat(prompt).then((reply) => {
