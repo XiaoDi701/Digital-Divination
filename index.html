@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>周一卦象</title>
+  <script src="https://js.puter.com/v2/"></script>
+</head>
+<body style="text-align: center; font-family: sans-serif;">
+  <h1>赛博·周一卦象检测</h1>
+  <p>点击下方按钮，开始你的三枚硬币卦象仪式</p>
+  <button onclick="startDivination()">掷卦</button>
+
+  <div id="result" style="margin-top: 30px;"></div>
+
+  <script>
+    function flipCoin() {
+      return Math.random() < 0.5 ? '正' : '反';
+    }
+
+    function startDivination() {
+      const resultBox = document.getElementById('result');
+      const coin1 = flipCoin();
+      const coin2 = flipCoin();
+      const coin3 = flipCoin();
+      const trigram = coin1 + coin2 + coin3;
+
+      resultBox.innerHTML = `<p>你掷出的卦象是：<strong>${trigram}</strong></p><p>正在连接天机……</p>`;
+
+      const prompt = `
+我刚掷出了三个赛博硬币，结果是：${coin1}、${coin2}、${coin3}。
+请你为我解读这个“数字卦象”：
+
+1. 给卦象起个名字（自创，未来风或玄学风）
+2. 给出一句简洁诗意的命运引言
+3. 提供一个今天的建议或提醒（不要太长）
+`;
+
+      puter.ai.chat(prompt).then((reply) => {
+        resultBox.innerHTML += `<pre style="text-align: left; white-space: pre-wrap; margin-top: 20px;">${reply}</pre>`;
+      });
+    }
+  </script>
+</body>
+</html>
