@@ -25,13 +25,13 @@ body {
     justify-content: center;
     align-items: center;
   }
-  #animationBox img {
+  /*#animationBox img {
     height: 100%;
     width: auto;
     border-radius: 16px;
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
     object-fit: contain;
-  }
+  }*/
   #result {
     margin-top: 2em;
     background: white;
