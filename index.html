@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Cyber I Ching Reading</title>
-        <script src="https://js.puter.com/v2/"></script>
-        <link rel="stylesheet" href="style.css"> <!-- 👈 这一行是关键 -->
-      </head>
+<head>
+  <meta charset="UTF-8">
+  <title>Cyber I Ching Reading</title>
+  <script src="https://js.puter.com/v2/"></script>
+  
+</head>
 <body>
   <h1>I Ching Divination</h1>
   <p>Click the button below to cast two sets of trigrams and receive your hexagram.</p>
@@ -15,7 +15,7 @@
   <div id="result"></div>
 
   <script>
-const guaMap = {
+    const guaMap = {
   "111111": "乾为天",
   "000000": "坤为地",
   "010001": "水雷屯",
@@ -79,26 +79,16 @@ const guaMap = {
 };
 
 
-
-
-    // 正确的动画帧路径：DumpStack.log.tmp0025 ~ tmp0059
-    const baseFrames = [];
-for (let i = 25; i <= 59; i++) {
-  const filename = `DumpStack.log.tmp${i.toString().padStart(4, '0')}.png`;
-  baseFrames.push(filename);
-}
-
-// 我们只有 "000", "001", "110", "111" 文件夹，其他复用已有的动画文件夹
-const coinAnimations = {
-  "000": baseFrames.map(f => `animation/000/${f}`),
-  "001": baseFrames.map(f => `animation/001/${f}`),
-  "010": baseFrames.map(f => `animation/001/${f}`), // fallback to 001
-  "011": baseFrames.map(f => `animation/000/${f}`), // fallback to 000
-  "100": baseFrames.map(f => `animation/111/${f}`), // fallback to 111
-  "101": baseFrames.map(f => `animation/110/${f}`), // fallback to 110
-  "110": baseFrames.map(f => `animation/110/${f}`),
-  "111": baseFrames.map(f => `animation/111/${f}`)
-};
+    const coinAnimations = {
+      "000": "animation/000.gif",
+      "001": "animation/001.gif",
+      "010": "animation/001.gif",
+      "011": "animation/000.gif",
+      "100": "animation/111.gif",
+      "101": "animation/110.gif",
+      "110": "animation/110.gif",
+      "111": "animation/111.gif"
+    };
 
     function flipCoin() {
       return Math.random() < 0.5 ? 0 : 1;
@@ -112,37 +102,27 @@ const coinAnimations = {
       return binary;
     }
 
-    function playAnimation(key, containerId = "animationBox", frameDelay = 100) {
+    function playAnimation(key, containerId = "animationBox") {
       const container = document.getElementById(containerId);
       container.innerHTML = "";
-      const frames = coinAnimations[key];
-      if (!frames) return;
 
-      let index = 0;
       const img = document.createElement("img");
+      img.src = coinAnimations[key];
+      img.alt = `Trigram ${key}`;
       container.appendChild(img);
-
-      const interval = setInterval(() => {
-        if (index >= frames.length) {
-          clearInterval(interval);
-        } else {
-          img.src = frames[index];
-          index++;
-        }
-      }, frameDelay);
     }
 
     function startDivination() {
-      const resultBox = document.getElementById('result');
+      const resultBox = document.getElementById("result");
       const upper = getTrigramBinary();
       const lower = getTrigramBinary();
       const full = upper + lower;
       const guaName = guaMap[full] || "未知卦象";
 
-      playAnimation(upper); // 上卦决定动画
+      playAnimation(upper); // 显示 GIF 动画
 
       resultBox.innerHTML = `
-        <p>Generated Hexagram: <strong>${guaName}</strong> </p>
+        <p>Generated Hexagram: <strong>${guaName}</strong></p>
         <p>Consulting the Dao...</p>
       `;
 
