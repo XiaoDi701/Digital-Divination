@@ -81,8 +81,6 @@
         background-repeat: no-repeat;
         padding: 40px 30px;
         max-width: 800px;
-        height: 280px;           /* ✅ 固定高度 */
-        overflow-y: auto;        /* ✅ 超出内容滚动 */
         margin: 30px auto;
         border-radius: 10px;
         color: #222;
