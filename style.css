@@ -31,6 +31,7 @@
         text-indent: -9999px;
         position: relative;
         z-index: 10;
+        flex-shrink: 0;   /* 防止被挤压变小 */
       }
       
       /* 按钮图片替代 */
@@ -49,6 +50,7 @@
         text-indent: -9999px; /* 隐藏按钮文字 */
         position: relative;
         z-index: 5;
+        flex-shrink: 0;   /* 防止被挤压变小 */
       }
       
       /* 动画显示区域 */
