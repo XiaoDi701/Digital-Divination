@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Cyber I Ching Reading</title>
+        
         <script src="https://js.puter.com/v2/"></script>
         <link rel="stylesheet" href="style.css">
         <script>
@@ -37,6 +38,7 @@
       </head>
 <body>
     <h1 class="title-image"></h1>
+    <input type="text" id="userQuestion" placeholder="Enter your question..." style="margin-bottom: 20px; padding: 10px; width: 80%; font-size: 1em;">
     <button class="button-image" onclick="startDivination()"></button>
 
   <div id="animationBox"></div>
@@ -164,7 +166,9 @@ resultBox.innerHTML = `
   <p>Your Hexagram: <strong>${guaName}</strong></p>
   <p>Consulting the Dao...</p>
 `;
-  const prompt = `
+const userQuestion = document.getElementById("userQuestion").value || "No specific question provided";
+
+const prompt = `
 Based on the following hexagram generated from digital coin tosses in an I Ching divination ritual, provide an accurate and traditional explanation from the Book of Changes:
 
 - Upper trigram (binary): ${upper}
@@ -172,12 +176,14 @@ Based on the following hexagram generated from digital coin tosses in an I Ching
 - Combined hexagram (binary): ${full}
 - Name of hexagram: ${guaName}
 
+User's question: "${userQuestion}"
+
 Please respond in the following structure:
 1. 卦名 (standard Chinese hexagram name, e.g., 泽水困)
 2. 卦义 (Traditional Chinese interpretation of this hexagram, accurate and concise)
-3. Advice (a short, practical takeaway or mindset reflection for today, based on this hexagram's meaning)
+3. Advice (a short, practical takeaway or mindset reflection for today, based on this hexagram's meaning, **especially in relation to the user's question**)
 
-Do not invent new hexagrams or interpret freely. Your answer must be grounded in traditional I Ching scholarship. Your answer should be in English. Do not use"*"for formatting in your response.
+Do not invent new hexagrams or interpret freely. Your answer must be grounded in traditional I Ching scholarship. Your answer should be in English. Do not use "*" for formatting in your response.
 `;
 
    puter.ai.chat(prompt).then((reply) => {
