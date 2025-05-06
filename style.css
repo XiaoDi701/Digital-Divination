@@ -9,6 +9,8 @@
       height: 100vh;
       display: flex;
       flex-direction: column;
+      justify-content: flex-start;
+      overflow: hidden; /* 防止内容撑爆页面 */
       font-family: "source-han-sans-cjk-hk", sans-serif;
       font-weight: 700;
       font-style: normal;
@@ -77,13 +79,14 @@
         background-image: url("cast.png");
         background-size: 100% 100%;
         background-repeat: no-repeat;
-        padding: 80px 60px; /* 原来是 40px 30px，扩大内容边距 */
-        max-width: 800px; /* 原来是 600px，让文字更不挤 */
+        padding: 40px 30px;
+        max-width: 800px;
+        height: 280px;           /* ✅ 固定高度 */
+        overflow-y: auto;        /* ✅ 超出内容滚动 */
         margin: 30px auto;
-        border-radius: 20px; /* 略显更圆润 */
+        border-radius: 10px;
         color: #222;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* 加一点边框感 */
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         line-height: 1.6;
         box-sizing: border-box;
       }
