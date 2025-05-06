@@ -43,7 +43,7 @@
   <div id="result" class="cast-box"></div>
 
   <script>
-    const guaMap = {
+const guaMap = {
   "111111": "乾为天",
   "000000": "坤为地",
   "010001": "水雷屯",
@@ -60,11 +60,11 @@
   "100111": "火天大有",
   "111100": "天雷无妄",
   "001111": "雷天大壮",
-  "000100": "地泽临",
-  "001000": "山地剥",
-  "011001": "风水涣",
-  "100110": "山泽损",
-  "000011": "地火明夷",
+  "000100": "地雷复",
+  "001000": "山雷颐",
+  "011001": "泽雷随",
+  "100110": "山风蛊",
+  "000011": "地泽临",
   "110000": "雷地豫",
   "101111": "泽天夬",
   "111101": "天风姤",
@@ -84,7 +84,7 @@
   "011000": "山风蛊",
   "110001": "雷山小过",
   "100011": "山泽履",
-  "111110": "天地否",
+  "111110": "天火讼",
   "011111": "风火家人",
   "000101": "火泽睽",
   "101000": "泽火革",
@@ -103,8 +103,11 @@
   "110011": "风火家人",
   "001100": "雷泽归妹",
   "011101": "泽山咸",
-  "101110": "火雷噬嗑"
+  "101110": "火雷噬嗑",
+  "010101": "水泽节",
+  "101010": "泽水困"
 };
+
 
 
     const coinAnimations = {
@@ -141,21 +144,24 @@
 
 
 function startDivination() {
-  document.body.style.backgroundImage = 'url("2.png")'; // 👈 切换背景
+    document.body.style.backgroundImage = 'url("2.png")';
 
-  const resultBox = document.getElementById("result");
-  const upper = getTrigramBinary();
-  const lower = getTrigramBinary();
-  const full = upper + lower;
-  const guaName = guaMap[full] || "未知卦象";
+// 隐藏 title 和 button
+document.querySelector(".title-image").style.display = "none";
+document.querySelector(".button-image").style.display = "none";
 
-  playAnimation(upper); // 显示 GIF 动画
+const resultBox = document.getElementById("result");
+const upper = getTrigramBinary();
+const lower = getTrigramBinary();
+const full = upper + lower;
+const guaName = guaMap[full] || `未知卦象 (${full})`;
 
-  resultBox.innerHTML = `
-    <p>Your Hexagram: <strong>${guaName}</strong></p>
-    <p>Consulting the Dao...</p>
-  `;
+playAnimation(upper);
 
+resultBox.innerHTML = `
+  <p>Your Hexagram: <strong>${guaName}</strong></p>
+  <p>Consulting the Dao...</p>
+`;
   const prompt = `
 Based on the following hexagram generated from digital coin tosses in an I Ching divination ritual, provide an accurate and traditional explanation from the Book of Changes:
 
@@ -172,7 +178,7 @@ Please respond in the following structure:
 Do not invent new hexagrams or interpret freely. Your answer must be grounded in traditional I Ching scholarship. Your answer should be in English. Do not use"*"for formatting in your response.
 `;
 
-  puter.ai.chat(prompt).then((reply) => {
+   puter.ai.chat(prompt).then((reply) => {
     resultBox.innerHTML += `
       <hr>
       <div style="text-align: left; white-space: pre-wrap;">${reply}</div>
