@@ -10,7 +10,7 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      overflow: hidden; /* 防止内容撑爆页面 */
+      overflow: hidden; 
       font-family: "source-han-sans-cjk-hk", sans-serif;
       font-weight: 700;
       font-style: normal;
@@ -18,25 +18,25 @@
       background-size: 100% auto;
       background-repeat: repeat-y;
       background-position: center center;
-      background-color: #f0f0f0;     /* 备用背景色 */
+      background-color: #f0f0f0;     
     }
 
     .title-image {
-        width: 1000px; /* 原来是 400px */
-        height: 250px; /* 原来是 100px */
+        width: 1000px; 
+        height: 250px; 
         background-image: url("title.png");
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
-        margin: 60px auto 0; /* 更靠上，不要挡按钮太多 */
+        margin: 60px auto 0; 
         border: none;
         text-indent: -9999px;
         position: relative;
         z-index: 10;
-        flex-shrink: 0;   /* 防止被挤压变小 */
+        flex-shrink: 0;   
       }
       
-      /* 按钮图片替代 */
+  
       .button-image {
         width: 220px;
         height: 60px;
@@ -49,13 +49,13 @@
         cursor: pointer;
         margin: 20px auto;
         display: block;
-        text-indent: -9999px; /* 隐藏按钮文字 */
+        text-indent: -9999px; 
         position: relative;
         z-index: 5;
-        flex-shrink: 0;   /* 防止被挤压变小 */
+        flex-shrink: 0;   
       }
       
-      /* 动画显示区域 */
+     
       #animationBox {
         flex: 1;
         display: flex;
@@ -76,17 +76,17 @@
       
       .cast-box {
         background-image: url("cast.png");
-        background-size: 120% 120%;    /* ⬅️ 放大背景图 */
+        background-size: 120% 120%;    
         background-repeat: no-repeat;
-        padding: 80px 60px;            /* ⬅️ 四周留更多空隙 */
-        max-width: 900px;              /* ⬅️ 整体更宽 */
-        height: 400px;                 /* ⬅️ 更高，足以容纳完整内容 */
-        overflow-y: auto;              /* ⬅️ 内容太多时才滚动 */
+        padding: 80px 60px;          
+        max-width: 900px;             
+        height: 400px;                 
+        overflow-y: auto;             
         margin: 30px auto;
         border-radius: 20px;
         color: #222;
         font-size: 1.2rem;
         line-height: 1.6;
         box-sizing: border-box;
-        display: none;                 /* ⬅️ 默认不显示，点击后才出现（见下方） */
+        display: none;                 
       }
