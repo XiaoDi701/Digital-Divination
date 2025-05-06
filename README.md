@@ -9,3 +9,4 @@ In this project, when the user clicks to divine, three binary digits are generat
 
 My hope is to use this light-hearted and playful format to help people become more curious about and connected to the I Ching tradition.
 
+P.S. after you perform one divination, the code is designed to hide the input fields for casting and asking questions. This is intentional—you are not supposed to keep asking until you get an answer you like, and you certainly shouldn't ask the I Ching about everything. You can't, you just can't
